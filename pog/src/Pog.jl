@@ -1,4 +1,4 @@
-module Pog2
+module Pog
 
 using Genie, Logging, LoggingExtras
 
