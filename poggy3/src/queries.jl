@@ -19,12 +19,11 @@ con = DBInterface.connect(MySQL.Connection,
 function dropTable2()
     DBInterface.execute(con,"DROP TABLE pgdb1.log;")
 end
-
+dropTable2()
 function createTable()
     DBInterface.execute(con,"CREATE TABLE pgdb1.log (friend varchar(255), cc_g1 int,cc_g3 int,jyg_1 int, yg_1 int,pg int, nucleus int);")
 end
-# createTable()
-
+createTable()
 function insertFriend2(friend,jyg_1,cc_g1,cc_g3,pg,yg_1,nucleus)
     DBInterface.execute(con, "INSERT INTO log (friend,jyg_1,cc_g1,cc_g3,pg,yg_1,nucleus) VALUES ('$friend', '$jyg_1','$cc_g1','$cc_g3', '$pg', '$yg_1','$nucleus' );")
 end
@@ -36,9 +35,8 @@ function getFriends2()
     fil = filter(row -> row.friend ∈ friendList, df)
     return fil
 end
-# getFriends().friend[1]
+getFriends2().friend
 
-friendslen = length(getFriends2().friend)
 
 
 export dropTable2, createTable2, insertFriend2, getFriends2

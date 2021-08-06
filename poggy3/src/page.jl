@@ -1,13 +1,40 @@
-
 module page
+
+using MySQL, DBInterface
+include("queries.jl")
+using .queries
+
+
+###############################################################################
+
+
+friendslen = length(getFriends2().friend)
+
+macro sayhello5()
+    str1 = ""
+    friendList4 = getFriends2().friend
+
+    for x in friendList4
+        str = "<li>$x</li>\n"
+        print(str)
+        str1 = str1 * str
+    end
+    return str1
+end
+
+m6 = @sayhello5
+
+
+###############################################################################
 
 pa = "style='text-align:left;color:blue;padding:19px;font-family:Courier New';.accordion {background-color: #eee;}"
 
-
-pager2 = """
+pager4 = """
 <form action="/" method="POST" enctype="multipart/form-data">
 
   <body  $pa>
+      <p id = "list1" onclick = "openList1()">List of Items</p>
+      $m6
 
       <div $pa>
       friend
@@ -30,7 +57,7 @@ pager2 = """
       </div>
       <script>
           for (let i = 0; i < 5; i++) {
-              document.write("Welcome to Friends :)");
+              document.write("Welcome to Friends! :)","\n");
           }
       </script>
       <div $pa>pg
@@ -46,5 +73,8 @@ pager2 = """
 </form>
 """
 
-export pager2
+export @sayhello5
+export pager4
+export runner2
+export runner
 end
