@@ -16,26 +16,26 @@ con = DBInterface.connect(MySQL.Connection,
 
 # functions
 
-function dropTable2()
+function dt2()
     DBInterface.execute(con,"DROP TABLE pgdb1.log;")
 end
-dropTable2()
-function createTable()
+dt2()
+function ct()
     DBInterface.execute(con,"CREATE TABLE pgdb1.log (friend varchar(255), cc_g1 int,cc_g3 int,jyg_1 int, yg_1 int,pg int, nucleus int);")
 end
-createTable()
-function insertFriend2(friend,jyg_1,cc_g1,cc_g3,pg,yg_1,nucleus)
-    DBInterface.execute(con, "INSERT INTO log (friend,jyg_1,cc_g1,cc_g3,pg,yg_1,nucleus) VALUES ('$friend', '$jyg_1','$cc_g1','$cc_g3', '$pg', '$yg_1','$nucleus' );")
+ct()
+function insertFriend2(friend,cc_g1,cc_g3,jyg_1,yg_1,pg,nucleus)
+    DBInterface.execute(con, "INSERT INTO log (friend,cc_g1,cc_g3,jyg_1,yg_1,pg,nucleus) VALUES ('$friend', '$cc_g1','$cc_g3','$jyg_1', '$yg_1', '$pg','$nucleus' );")
 end
 
 function getFriends2()
     cur = DBInterface.execute(con, "SELECT * FROM log")
     df  = DataFrame(cur)
     friendList = convert(Vector,df[:, :friend])
-    fil = filter(row -> row.friend ∈ friendList, df)
-    return fil
+    filteredDf = filter(row -> row.friend ∈ friendList, df)
+    return filteredDf
 end
-getFriends2().friend
+getFriends2()
 
 
 
