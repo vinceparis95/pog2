@@ -6,22 +6,29 @@ include("queries.jl")
 using .queries
 include("page.jl")
 using .page
-page.@logFriend
-route("/") do
+
+
+function zz()
   loggingPage = page.logFriend()
-  html(loggingPage)
+  return loggingPage
+end
+
+
+route("/") do
+  html(zz())
 end
 
 # createUser("john")
 route("/", method = POST) do
-  queries.insertFriend2(postpayload(:friend),
+  queries.insertFriend(postpayload(:friend),
                postpayload(:cc_g1),
                postpayload(:cc_g3),
                postpayload(:jyg_1),
                postpayload(:yg_1),
                postpayload(:pg),
                postpayload(:nucleus))
-  ob2 = getFriends2()
+  ob2 = getFriends()
+  @xx
   # getFriends2
   return ob2
 end

@@ -7,13 +7,11 @@ using JSON, JSONTables
 using DataFrames
 
 mutable struct friend
-    chords::DataFrame
-    eigenF::Expr
-    correl::DataFrame
-    circle::Float64
-    eigens::Expr
-    neural::Expr
-    couple::Expr
+    transforms::DataFrame
+    eigenforms::DataFrame
+    neural_ode::Expr
+    circle_cor::Vector
+    change_cor::Expr
 end
 
 mutable struct group
@@ -37,6 +35,7 @@ end
 
 mutable struct neighborhood
     tilling::Float64
+    changes::Float64
 end
 
 end

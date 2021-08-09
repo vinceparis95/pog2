@@ -4,11 +4,10 @@ using MySQL, DBInterface
 include("queries.jl")
 using .queries
 
-friendslen = length(getFriends2().friend)
 
 macro htmlFriends()
     str1 = ""
-    friendList = getFriends2().friend
+    friendList = getFriends().friend
     for x in friendList
         str = "<li>$x</li>\n"
         print(str)
